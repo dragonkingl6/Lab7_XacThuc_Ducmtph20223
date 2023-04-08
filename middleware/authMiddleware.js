@@ -5,7 +5,7 @@ const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
   // check json web token exists & is verified
-  console.log("huy token:"+token)
+  console.log("duc token:"+token)
   if (token) {
     jwt.verify(token, 'net ninja secret', (err, decodedToken) => {
       if (err) {
@@ -25,14 +25,14 @@ const requireAuth = (req, res, next) => {
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, 'net ninja secret', async (err, decodedToken) => {
+    jwt.verify(token, 'net Tà Tưa', async (err, decodedToken) => {
       if (err) {
         res.locals.user = null;
         next();
       } else {
         let user = await User.findById(decodedToken.id);
         res.locals.user = user;
-        console.log("huy"+user)
+        console.log("duc"+user)
         next();
       }
     });
